@@ -99,7 +99,7 @@
     - medium: https://medium.com/@dricazenck
 
 - name: Aishwarya Nair
-  disabled: false
+  disabled: true
   hours: 1
   type: ad-hoc
   index: 4
@@ -397,7 +397,7 @@
     - website: https://grumpyoldfart.org/
 
 - name: Shelly Gabriela Leal
-  disabled: false
+  disabled: true
   hours: 2
   type: ad-hoc
   index: 13
@@ -1586,7 +1586,7 @@
     - twitter: https://twitter.com/dmitryvim
 
 - name: Valeriia Amelchenia
-  disabled: true
+  disabled: false
   hours: 5
   position: QA Engineer, Technical Writer (Freelancer)
   type: both
@@ -2231,3 +2231,37 @@
     - linkedin: https://www.linkedin.com/in/tvisha/
     - twitter: https://twitter.com/_tvisha_
     - website: https://apibanking.substack.com/
+
+
+- name: Kirthikka Devi Venkataram
+  disabled: false
+  hours: 2
+  position: Lead, Women Who Code Data Science
+  type: long-term
+  index: 73
+  location: India, Coimbatore
+  bio: |
+    Hi, I am Kirthikka, an experienced Manager launched embedded system products for 10 years leveraging design thinking and data driven approach working for B2B segments resulting Product’s growth and increasing revenue. I have enhanced the System Product features working in scrum - agile projects for cutting-edge technologies bisecting the business outcome, engineering design empathizing the customers. During my career, I have worked on time sensitive bootloader live up software product for a conceptual Samsung - Bosch collaborative SBLiMotive project which was a milestone. I provided innovative software design solution considering the criticality of secure booting and time taken to flash the electronic system components as a successful standalone system creating a MVP. This has enhanced the business revenue stream by 30%.For a different organization and role, I was awarded for presenting the Business Unit's technical expertise selling before the prospects towards increasing the NPS and acquire more projects.
+  image: assets/images/mentors/73.jpg
+  languages: English
+  skills:
+    experience: 10-15 Years
+    years: 15
+    mentee: I look for an individual who is interested in enhancing her career structured by the step by step approach provided to her. Interested and passionate about growing skills specific to Tech industry. Individual interested in transition to Management.
+    areas:
+      - Product Management
+      - Data Science
+      - Engineering management
+      - Project Management
+      - Machine Learning
+    languages: C, Python
+    focus:
+      - Grow from beginner to mid-level
+      - Switch from IC to management position
+      - Grow from mid-level to senior-level
+      - Switch career to IT
+      - Change specialisation within IT
+    extra: Resume Review, Prepare for interview, Product Management, Transition into Tech.
+  network:
+    - linkedin: https://www.linkedin.com/in/kirthikka-devi-v
+    - Medium: https://medium.com/@rithik18
