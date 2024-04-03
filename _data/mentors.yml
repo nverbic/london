@@ -791,10 +791,9 @@
 
 - name: Tara Hofton
   disabled: false
-  marched: true
   sort: 10
   hours: 4
-  type: both
+  type: ad-hoc
   index: 25
   position: Engineering Manager, Elliptic
   bio: As a technology leader and engineering manager, I help cross-functional teams deliver products that businesses need, users love and the team is proud of. I enjoy working across multiple disciplines including software development, data science, DevOps, InfoSec, hiring, coaching and career development.
@@ -1825,15 +1824,15 @@
     - linkedin: https://www.linkedin.com/in/olgaponkratova/
 
 - name: Liliia Rafikova
-  disabled: true
-  sort: -1
+  disabled: false
+  sort: 100
   hours: 5
-  position: SDE, AWS
+  position: Software Engineer, Amazon
   type: Both
   index: 57
   location: London, UK
   bio: |
-    Will do it a bit later
+    I'm a seasoned backend software engineer with over 8 years of hands-on experience specializing in cloud technologies. My expertise lies in JVM languages, and I've expanded my skill set to include proficiency in C++ and Rust. My background in data structures and algorithms, coupled with extensive work in developing distributed systems at massive scales, equips me with the tools to tackle complex technical challenges effectively. I'm deeply passionate about delving into the intricacies of low-level programming and optimizing operational systems for peak performance. Would love to see more women in tech.
   image: assets/images/mentors/57.png
   languages: English, Russian
   skills:
