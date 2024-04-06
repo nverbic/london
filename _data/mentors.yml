@@ -874,7 +874,7 @@
   languages: English
   skills:
     experience: 2-4 years
-    years: 2
+    years: 4
     areas:
       - Machine Learning
       - Data Engineering
@@ -1165,7 +1165,7 @@
   hours: 2
   position: Principal software engineer, Apple
   sort: 10
-  type: ad-hoc
+  type: long-term
   index: 37
   location: United Kingdom, London
   bio: 18 years of experience in developing highly scalable distributed systems, majorly in data storage systems and fintech domains. Experience driving projects and leading teams
@@ -1706,7 +1706,7 @@
     october: true
   skills:
     experience: 1-2 Years
-    years: 3
+    years: 2
     mentee: Someone that is looking to venture into Tech. 'm looking for mentees who are open-minded and eager to learn, particularly those in the early to mid stages of their careers or career switchers.
     areas:
       - Machine Learning
@@ -1837,7 +1837,7 @@
   languages: English, Russian
   skills:
     experience: 10-15 Years
-    years: 7
+    years: 15
     mentee: |
       Any will work. I'm actually single mother too.
     areas:
@@ -1933,7 +1933,7 @@
   languages: English, Spanish
   skills:
     experience: 5-7 Years
-    years: 5
+    years: 7
     mentee: |
       As a mentor, I am seeking a mentee who possesses a genuine passion for coding and a sincere desire to leverage their technical skills to make a positive impact on society. I am eager to work with individuals who not only excel in coding but also exhibit a strong sense of social responsibility and an ambition to contribute to meaningful change through technology. I value enthusiasm, dedication, and a willingness to learn and grow, and I am excited to support a mentee who shares these qualities and aspirations.
     areas:
@@ -2515,7 +2515,7 @@
   languages: English
   skills:
     experience: 7-10 Years
-    years: 7
+    years: 10
     mentee: Someone new to the tech world
     areas:
       - Frontend Developer
@@ -2581,7 +2581,7 @@
   languages: English
   skills:
     experience: 4-5 Years
-    years: 4
+    years: 5
     mentee: I am looking for a mentee who is enthusiastic and curious in learning new things.
     areas:
       - Frontend Developer
@@ -2610,7 +2610,7 @@
   languages: English, Russian
   skills:
     experience: 7-10 Years
-    years: 7
+    years: 10
     mentee: Return to work after maternity leave
     areas:
       - Project Management
@@ -2837,7 +2837,7 @@
   languages: English
   skills:
     experience: 7-10 Years
-    years: 7
+    years: 10
     mentee: Anyone wishing to get more hands-on in Data Science or Machine learning
     areas:
       - Data Science
