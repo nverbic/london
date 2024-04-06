@@ -1,10 +1,7 @@
 '''
-    Crate a script that will read mentor's data from mentors.xlsx to mentors.yml file
+    Create a script that will convert mentor's data from mentors.xlsx to mentors.yml file
 
     TODO:
-        Check how to display:
-        type: long-term/both/ad-hoc or full string from the table (example: Long-term mentorship (one cycle from 04.2023 until 10.2023))
-
         Where to get:
             disabled: ?
             sort: ?
@@ -35,6 +32,10 @@ FOCUS_END_INDEX = 18
 # For mentor's programming lang. block
 PROG_LANG_START_INDEX = 19
 PROG_LANG_END_INDEX = 23
+
+TYPE_AD_HOC = "ad hoc"
+TYPE_LONG_TERM = "long-term"
+TYPE_BOTH = "both"
 
 
 def get_social_media_links(social_media_links_str):
@@ -116,8 +117,23 @@ def get_multiline_string(long_text_arg):
     '''
     multiline_str = ''
     if not pd.isna(long_text_arg):
-            multiline_str = LiteralScalarString(textwrap.dedent(long_text_arg))
+        multiline_str = LiteralScalarString(textwrap.dedent(long_text_arg))
     return multiline_str
+
+def get_mentorship_type(mentorship_type_str):
+    '''
+        Return mentorship type: ad-hoc, long-term, both or empty str
+    '''
+    type = mentorship_type_str.lower()
+
+    if TYPE_AD_HOC in type:
+        return TYPE_AD_HOC.replace(' ', '-')
+    elif TYPE_LONG_TERM in type:
+        return TYPE_LONG_TERM
+    elif TYPE_BOTH in type:
+        return TYPE_BOTH
+
+    return ""
 
 def create_mentors_yml_file(mentors_data):
     '''
@@ -173,6 +189,7 @@ def read_mentors_xlsx_file(xlsx_file):
                                                             PROG_LANG_START_INDEX,
                                                             PROG_LANG_END_INDEX)
 
+        type_of_mentorship = get_mentorship_type(mentor_row.iloc[2])
         network_list = get_social_media_links(mentor_row.iloc[27])
         hours_per_month = get_numbers_from_string(mentor_row.iloc[28])
         max_experience = get_numbers_from_string(mentor_row.iloc[8])
@@ -189,7 +206,7 @@ def read_mentors_xlsx_file(xlsx_file):
                 'matched': matched,
                 'sort': sort,
                 'hours': hours_per_month,
-                'type': mentor_row.iloc[2],
+                'type': type_of_mentorship,
                 'index': index,
                 'location': mentor_row.iloc[4],
                 'position': f"{mentor_row.iloc[6]}, {mentor_row.iloc[7]}",
