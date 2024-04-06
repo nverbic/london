@@ -1,12 +1,13 @@
-<!--- Provide a general summary of your changes in the Title above -->
-
 ## Description
-<!--- Describe your changes in detail -->
+<!--- Describe your changes in detail --> 
+<!--- Why is this change required? What problem does it solve? -->
+<!--- If it fixes an open issue, please link to the issue here. -->
 
 ## Change Type
 - [ ] Bug Fix
 - [ ] New Feature
 - [ ] Code Refactor
+- [ ] Mentor Update
 - [ ] Documentation
 - [ ] Other
 
@@ -16,9 +17,6 @@
 <!--- If fixing a bug, there should be an issue describing it with steps to reproduce -->
 <!--- Please link to the issue here: -->
 
-## Motivation and Context
-<!--- Why is this change required? What problem does it solve? -->
-<!--- If it fixes an open issue, please link to the issue here. -->
 
 ## Screenshots
 <!--  If you are chaging html, css or new resources it is mandatory to add screeshot. -->
@@ -29,6 +27,6 @@
 Please check if your PR fulfills the following requirements:
 - [ ] I checked and followed the [contributor guide](CONTRIBUTING.md) 
 - [ ] I have tested my changes locally.
-- [ ] I have added a screenshot from the website after I tested it locally
+- [ ] I have added a screenshot from the website after I tested it locally 
 
 <!--  Thanks for sending a pull request! -->
