@@ -2855,3 +2855,26 @@
     extra: Resume Review, Preparation for Technical Invterview, Case Studies, Projects for github
   network:
     - linkedin: https://www.linkedin.com/in/dhekanea/
+
+- name: Mona Ahluwalia
+  disabled: false
+  sort: 10
+  hours: 3
+  position: Talent Director, Chapter 2
+  type: ad-hoc
+  index: 89
+  location: London, UK
+  bio: I'm a Recruitment professional and start-up scaling specialist. I can help mentees with the soft-skills development to really make impact in their role and in the workplace.
+  image: assets/images/mentors/89.jpg
+  languages: English
+  skills:
+    experience: 5-7 Years
+    years: 7
+    mentee: I can help with all soft-skills related coaching
+    areas:
+      -
+    focus:
+      - Switch from IC to management position
+    extra: Resume review, emotional intelligence, communication, interviewing
+  network:
+    - linkedin: https://www.linkedin.com/in/mona-ahluwalia-certrp-7754767a/

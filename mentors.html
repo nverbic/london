@@ -131,7 +131,9 @@ title: Mentors
                                     <label>Areas to support the mentee</label>:
                                     <ul>
                                         {% for area in mentor.skills.areas %}
-                                            <li>{{area}}</li>
+                                            {% if area != nil %}
+                                                <li>{{area}}</li>
+                                            {% endif %}
                                         {% endfor %}
                                         {% for focus in mentor.skills.focus %}
                                             <li>{{focus}}</li>
