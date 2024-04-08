@@ -1,12 +1,6 @@
 '''
     Create a script that will convert mentor's data from mentors.xlsx to mentors.yml file
 
-    TODO:
-        Where to get:
-            disabled: ?
-            sort: ?
-            index: ?
-            years: ?
 '''
 
 import os
@@ -36,6 +30,9 @@ PROG_LANG_END_INDEX = 23
 TYPE_AD_HOC = "ad hoc"
 TYPE_LONG_TERM = "long-term"
 TYPE_BOTH = "both"
+
+IMAGE_FILE_PATH = "assets/images/mentors/"
+IMAGE_SUFFIX = ".jpeg"
 
 
 def get_social_media_links(social_media_links_str):
@@ -97,7 +94,6 @@ def get_numbers_from_string(text_arg, get_max_value=True):
             - list of numbers or
             - empty str in case of error
     '''
-    #TODO: Check - is it possible to have en empty field for available hours?
     if isinstance(text_arg, (int, float)):
         return text_arg
     elif isinstance(text_arg, str):
@@ -194,24 +190,28 @@ def read_mentors_xlsx_file(xlsx_file):
         hours_per_month = get_numbers_from_string(mentor_row.iloc[28])
         max_experience = get_numbers_from_string(mentor_row.iloc[8])
 
-        # TODO: Temp solution - change
-        disabled = False
-        matched = True
-        sort = 10
-        index = i+1
-        image = ""
+        mentor_disabled = False
+        mentor_matched = False
+        mentor_sort = 10
+
+        #TODO: Implement dictionary with email, index pairs, in order to preserve existing indexing
+        mentor_index = i+1
+
+        # Commented until metor_index is implemeted
+        # mentor_image = os.path.join(IMAGE_FILE_PATH, str(mentor_index) + IMAGE_SUFFIX)
+        mentor_image =  ""
 
         mentor = {'name': mentor_row.iloc[0],
-                'disabled': disabled,
-                'matched': matched,
-                'sort': sort,
+                'disabled': mentor_disabled,
+                'matched': mentor_matched,
+                'sort': mentor_sort,
                 'hours': hours_per_month,
                 'type': type_of_mentorship,
-                'index': index,
+                'index': mentor_index,
                 'location': mentor_row.iloc[4],
                 'position': f"{mentor_row.iloc[6]}, {mentor_row.iloc[7]}",
                 'bio': bio_str,
-                'image': image,
+                'image': mentor_image,
                 'languages': mentor_row.iloc[5],
                 'skills':{
                     'experience': mentor_row.iloc[8],
