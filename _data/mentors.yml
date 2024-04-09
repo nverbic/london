@@ -1692,10 +1692,10 @@
     - website: https://adplist.org/mentors/valeriia-amelchenia
 
 - name: Mehul Varsha Singh
-  disabled: false
+  disabled: true
   hours: 3
   position: Student - Masters at UCL
-  sort: 10
+  sort: -1
   type: ad-hoc
   index: 53
   location: London, United Kingdom
@@ -2172,8 +2172,8 @@
     - linkedin: https://www.linkedin.com/in/adeola-adekoyejo-405799115?trk=contact-info
 
 - name: Fanny Batista Vieira
-  disabled: false
-  sort: 100
+  disabled: true
+  sort: -1
   hours: 2
   position: Senior Software Engineer, The Pokemon Company International
   type: both
