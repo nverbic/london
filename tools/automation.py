@@ -168,7 +168,7 @@ def xlsx_to_yaml_parser(xlsx_file):
 
         # Commented until metor_index is implemeted
         # mentor_image = os.path.join(IMAGE_FILE_PATH, str(mentor_index) + IMAGE_SUFFIX)
-        mentor_image =  ""
+        mentor_image =  "Download image from mentor's LinkedIn/Slack profile page"
 
         mentor = {'name': mentor_row.iloc[0],
                 'disabled': mentor_disabled,
