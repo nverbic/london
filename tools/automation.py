@@ -61,9 +61,7 @@ def get_yaml_block_sequence(mentor_data, start_index, end_index):
     for entry in range(start_index, end_index+1):
         if not pd.isna(mentor_data.iloc[entry]):
             block_sequence_list.append(mentor_data.iloc[entry].rstrip())
-        return block_sequence_list
-
-    return ""
+    return block_sequence_list
 
 
 def extract_numbers_from_string(text_arg, get_max_value=True):
@@ -166,7 +164,7 @@ def xlsx_to_yaml_parser(xlsx_file):
         # in order to preserve existing indexing
         mentor_index = i+1
 
-        # Left commented since the code might be used in the later version (if decided to 
+        # Left commented since the code might be used in the later version (if decided to
         # add default picture until the mentor's image is not available)
         # mentor_image = os.path.join(IMAGE_FILE_PATH, str(mentor_index) + IMAGE_SUFFIX)
         mentor_image =  f"Download image from: {mentor_row.iloc[33]}"
