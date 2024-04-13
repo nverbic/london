@@ -29,7 +29,7 @@
 - name: Rajani Rao
   disabled: false
   matched: true
-  sort: 10
+  sort: 200
   hours: 5
   type: both
   index: 2
@@ -39,7 +39,7 @@
   image: assets/images/mentors/2.jpeg
   location: Cambridge, UK
   languages: English
-  availability: []
+  availability: [ 5 , 6 ]
   skills:
     experience: 16+ years
     years: 16
@@ -1972,8 +1972,8 @@
 - name: Monique Grinstein
   disabled: false
   hours: 2
-  position: Software Engineer,	The LEGO Group
-  sort: 10
+  position: Software Engineer, The LEGO Group
+  sort: 200
   type: ad-hoc
   index: 64
   location: London, UK
@@ -1981,7 +1981,7 @@
     I work mainly with Backend and AWS. I am keen to help people start their journey in Software Engineering and Cloud Computing. I can share some knowledge from the industry, help you review your CV to apply for a job, and anything else around that. If you're looking to get AWS certified, I could also help you come up with a study plan, and share tips and study materials. I currently hold two certifications: Cloud Practitioner & Solutions Architect - Associate.
   image: assets/images/mentors/64.jpg
   languages: English, Portuguese, French
-  availability: []
+  availability: [ 5 , 6 ]
   skills:
     experience: 4-5 Years
     years: 5
@@ -2396,7 +2396,7 @@
 
 - name: Rasim Sen
   disabled: false
-  sort: 10
+  sort: 250
   matched: true
   hours: 4
   position: Fullstack Developer/Cloud Architect, Eurostar
@@ -2407,7 +2407,7 @@
     With over 15 years of experience as a developer, I am a graduate of the Oxford Blockchain Strategy Programme and an AWS Solutions Architect. My career has spanned various roles, including full-stack, backend, frontend, blockchain developer, and platform engineer, collaborating with startups and enterprises alike, such as HSBC, Deloitte, Credit Suisse, GSK, and Eurostar. My technical expertise encompasses Java (including Spring and Spring Boot), JavaScript (Node.js, React.js, TypeScript), and both relational and non-relational databases (Oracle, MySQL, PostgreSQL, MongoDB, DynamoDB, Neo4j, among others).
   image: assets/images/mentors/77.jpg
   languages: English
-  availability: []
+  availability: [ 5 , 6 ]
   skills:
     experience: 16 Years
     years: 16
@@ -2559,7 +2559,7 @@
   sort: 10
   hours: 2
   position: Machine learning Engineer, JLR
-  type: ad-hoc
+  type: long-term
   index: 82
   location: London, UK
   bio: |
