@@ -5,6 +5,7 @@ title: Mentors
 
 <h1>Meet our community of mentors!</h1>
 
+
 {% include search_mentor.html %}
 
 <div class="mentors container">
@@ -15,7 +16,12 @@ title: Mentors
         Sorry, no mentors matching your search criteria were found. Please, adjust your filters and try again.
     </div>
 
+    {% assign days_open = site.registration | plus: 0 %}
+    {% assign current_day = site.time | date: "%d" | plus: 0 %}
+    {% assign current_month = site.time | date: "%-m" | plus: 0 %}
+
     {% assign mentors = site.data.mentors | sort: "sort" | reverse %}
+
     {% for mentor in mentors %}
         {% if mentor.disabled %}
             <div class="inactive-mentor" id="mentor-card-{{mentor.index}}"></div>
@@ -23,9 +29,9 @@ title: Mentors
             <div class="card" id="mentor-card-{{mentor.index}}">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="{{mentor.image}}" class="card-img" alt="...">     
+                        <img src="{{mentor.image}}" class="card-img" alt="...">
+                        {% include registration.html %}
                     </div>
-
                     <div class="col-md-9">
                         <div class="card-body">
                             <div class="card-header">
