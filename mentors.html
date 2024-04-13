@@ -66,50 +66,7 @@ title: Mentors
                                     <p class="card-text"><label>Programming languages</label>: {{mentor.skills.languages}}</p>
                                 {% endif %}
 
-                                <p class="network">
-                                    {% for network in mentor.network %}
-                                        {% if network.linkedin %}
-                                            <a href="{{network.linkedin}}" target="_blank">
-                                                {% include icons/linkedin.svg %}
-                                            </a>
-                                        {% endif %}
-                                        {% if network.twitter %}
-                                            <a href="{{network.twitter}}" target="_blank">
-                                                {% include icons/twitter.svg %}
-                                            </a>
-                                        {% endif %}
-                                        {% if network.github %}
-                                            <a href="{{network.github}}" target="_blank">
-                                                {% include icons/github.svg %}
-                                            </a>
-                                        {% endif %}
-                                        {% if network.medium %}
-                                            <a href="{{network.medium}}" target="_blank">
-                                                {% include icons/medium.svg %}
-                                            </a>
-                                        {% endif %}
-                                        {% if network.website %}
-                                        <a href="{{network.website}}" target="_blank">
-                                            {% include icons/website.svg %}
-                                        </a>
-                                        {% endif %}
-                                        {% if network.instagram %}
-                                        <a href="{{network.instagram}}" target="_blank">
-                                            {% include icons/instagram.svg %}
-                                        </a>
-                                        {% endif %}
-                                        {% if network.telegram %}
-                                        <a href="{{network.telegram}}" target="_blank">
-                                            {% include icons/telegram.svg %}
-                                        </a>
-                                        {% endif %}
-                                        {% if network.youtube %}
-                                        <a href="{{network.youtube}}" target="_blank">
-                                            {% include icons/youtube.svg %}
-                                        </a>
-                                        {% endif %}
-                                    {% endfor %}
-                                </p>
+                                {% include networks_mentors.html %}
 
                             </div>
 
@@ -145,46 +102,9 @@ title: Mentors
                                 {% endif %}
                             </div>
 
-                            {% assign reviews = site.data.reviews | where:"index", mentor.index %}
-                            {% if reviews == empty %}
-                                <div id="reviews-{{mentor.index}}" class="card-reviews d-none">
-                                    <p class="card-text">This mentor hasn't received any reviews yet.</p>
-                                </div>
-                            {% endif %}
-                            {% for review in reviews %}
-                                <div id="reviews-{{mentor.index}}" class="card-reviews d-none">
-                                    {% assign feedbacks = review.feedback | sort: 'date' | reverse %}
-                                    {% for feedback in feedbacks %}
-                                        <div class="stars stars{{feedback.score}}"></div>
-                                        <p class="card-text">
-                                          <span>{{feedback.date-f}}</span> - {{feedback.type}}
-                                        </p>
-                                        <p class="card-text">{{feedback.feedback}}</p><small>by {{feedback.name}}</small>
-                                        <hr>
-                                    {% endfor %}
-                                </div>
-                            {% endfor %}
+                            {% include review_mentors.html %}
 
-                            {% assign books = site.data.books | where:"index", mentor.index %}
-                            {% if books == empty %}
-                                <div id="mentor-resources-{{mentor.index}}" class="card-resources d-none">
-                                    <p class="card-text">This mentor doesn't have resource recommendations yet.</p>
-                                </div>
-                            {% endif %}
-                            {% for book in books %}
-                                <div id="mentor-resources-{{mentor.index}}" class="card-resources d-none">
-                                    <h5>Book Recommendations</h5>
-                                    {% assign books = book.books %}
-                                    <div class="book-recommendations">
-                                        {% for book in books %}
-                                        <div class="book">
-                                            <h6>{{ book.title }}</h6>
-                                            <p>{{ book.comments }}</p>
-                                        </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            {% endfor %}
+                            {% include resources_mentors.html %}
                         </div>
                     </div>
                 </div>
