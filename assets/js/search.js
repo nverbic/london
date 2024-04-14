@@ -17,7 +17,9 @@ let controllerSearch = (function(jQuery) {
       ]);
 
     let params = new URLSearchParams(window.location.search);
-    let totalMentors;
+    const totalMentors = jQuery(".card").length + jQuery(DEACTIVATED_MENTOR).length;
+    const activeMentors = jQuery(".card").length;
+    let filteredMentors = 0;
 
     let $keywords = jQuery("#keywords");
     let $area = jQuery("#area");
@@ -30,6 +32,7 @@ let controllerSearch = (function(jQuery) {
     let $searchBtn = jQuery("#search");
     let $clearBtn = jQuery("#clear-btn");
     let $toggleFilterBtn = jQuery('#toggle-filters');
+    const $numberOfMentorsDisplay = jQuery('#total-mentors');
     
     let showMentorCard = function(index) {
         jQuery(MENTOR_CARD+index).removeClass(HIDE_CLASS);
@@ -111,6 +114,14 @@ let controllerSearch = (function(jQuery) {
         }
     };
 
+    const setNumberOfMentors = (val) => {
+        $numberOfMentorsDisplay.text(val);
+    }
+
+    const resetFilteredMentors = () => {
+        filteredMentors = 0;
+    }
+
     let removeFilters = function(){
         jQuery(MENTOR_CARD_HIDDEN).removeClass(HIDE_CLASS);
         applyMentorsMsg();
@@ -120,13 +131,16 @@ let controllerSearch = (function(jQuery) {
         $focus.val("");
         $type.val("");
         $experience.val("");
+        setNumberOfMentors(activeMentors);
     };
 
     let filterMentors = function(filters) {
         if (isDefined(filters)) {
+            resetFilteredMentors();
             for (let index = 1; index <= totalMentors; index++) {
                 applyMentorFilters(index, filters);
             }
+            setNumberOfMentors(filteredMentors);      
         }
     }
 
@@ -135,6 +149,7 @@ let controllerSearch = (function(jQuery) {
         let mentor = jQuery(mentorCardId);
         if (isDefined(mentor)) {
             if (hasFilters(mentorCardId, filters)) {
+                filteredMentors++;
                 showMentorCard(index);
             } else {
                 hideMentorCard(index);
@@ -223,7 +238,7 @@ let controllerSearch = (function(jQuery) {
     };
 
     let init = function() {
-        totalMentors = jQuery(".card").length + jQuery(DEACTIVATED_MENTOR).length;
+        setNumberOfMentors(activeMentors);
         initEvents();
         applyKeywordsParam();
     };
