@@ -79,8 +79,13 @@ title: Mentors
                             <div id="mentees-{{mentor.index}}" class="card-mentees d-none">
                                 <p class="card-text" data-toggle="tooltip" data-html="true" title="<b>Ad-Hoc:</b> request a session when necessary. <br><b>Long term relationship:</b> at least one mentoring program cycle.">
                                     <label>Type of mentoring</label>:
-                                    {% if mentor.type == 'both' %}
+                                    {% assign mentor_type_lower = mentor.type | downcase %}
+                                    {% if mentor_type_lower == 'both' %}
                                         Long term relationship and Ad-Hoc
+                                    {% elsif mentor_type_lower == 'long-term' %}
+                                        Long term relationship
+                                    {% elsif mentor_type_lower == 'ad-hoc' %}
+                                        Ad-Hoc
                                     {% else %}
                                         {{mentor.type}}
                                     {% endif %}
@@ -116,10 +121,10 @@ title: Mentors
                 </div>
                 <input type="hidden" name="index" value="{{mentor.index}}">
                 <input type="hidden" name="exp" value="{{mentor.skills.years}}">
+                <input type="hidden" name="mentor-type" value="{{mentor.type | downcase}}">
                 <input type="hidden" name="mentor-data"
                     value="{{mentor.name | downcase}}
                         {{mentor.bio | normalize_whitespace | downcase}}
-                        {{mentor.type | downcase}}
                         {{mentor.skills.languages | downcase}}
                         {{mentor.skills.extra | normalize_whitespace | downcase}}
                         {{mentor.skills.focus | array_to_sentence_string | downcase}}
