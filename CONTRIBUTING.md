@@ -94,6 +94,21 @@ Here are some things you can do today to get started contributing:
 
 The `good first issue` label also indicates that Women Who Code - London Members have committed to providing extra assistance for newcontributors.
 
+## Code Pattern Guide :memo:
+- Use single quotes pattern for simple strings. (Example: `const containerEl = jQuery('#container')` instead of `const containerEl = jQuery("#container")`)
+- Define constants that may be used multiple times ahead, and with uppercase variables. Example: 
+```
+const MENTOR_TYPE_BOTH = 'both';
+
+...
+
+if (someValue === MENTOR_TYPE_BOTH) {
+    ...
+}
+```
+
+- Consider defining variables and functions with `const` instead of `let` for declarations that should not change.
+
 ## Style Guide for Git Commit Messages :memo:
 
 **How you can add more value to your contribution logs:**

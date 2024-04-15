@@ -1,16 +1,16 @@
 let controllerCodeOfConduct = (function(jQuery) {
-    const menteeConduct = jQuery("#mentee-conduct");
-    const mentorConduct = jQuery("#mentor-conduct");
+    const menteeConduct = jQuery('#mentee-conduct');
+    const mentorConduct = jQuery('#mentor-conduct');
     
-    const btnMenteeLearnMore = jQuery("#btn-mentee-learn-more");
-    const btnMentorLearnMore = jQuery("#btn-mentor-learn-more");
-    const btnHideMenteesShowLess = jQuery("#btn-mentee-show-less");
-    const btnHideMentorShowLess = jQuery("#btn-mentor-show-less");
+    const btnMenteeLearnMore = jQuery('#btn-mentee-learn-more');
+    const btnMentorLearnMore = jQuery('#btn-mentor-learn-more');
+    const btnHideMenteesShowLess = jQuery('#btn-mentee-show-less');
+    const btnHideMentorShowLess = jQuery('#btn-mentor-show-less');
     
-    const menteeHeading = jQuery("#mentee-section");
-    const mentorHeading = jQuery("#mentor-section");
+    const menteeHeading = jQuery('#mentee-section');
+    const mentorHeading = jQuery('#mentor-section');
 
-    const classHide = "d-none";
+    const classHide = 'd-none';
 
     let menteeCodeConduct = function() {
         menteeConduct.removeClass(classHide);
