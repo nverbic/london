@@ -42,3 +42,18 @@
           This one`s an eye-opener! Everything I thought I understood about motivation was wrong. If you`re struggling with your own motivation, this might help you understand why. If you lead others, it`s a valuable addition to your toolbox.
     - title: Start With WHY by Simon Sink
       comments: “How great leaders inspire everyone to take action”. But it`s not just about leaders. There`s valuable insight here to help understand yourself, too. I also recommend you look up Simon`s Ted Talks, they`re fun to watch and really on-point.
+
+- index: 33 # mentor id 33 - madhura
+  books:
+    - title: |
+        Software Engineering at Google by Titus Winters, Tom Manshreck and Hyrum Wright
+      comments: The book is comprehensive; pick and choose concepts that interest you.
+    - title: |
+        The easiest way to learn design patterns by Fiodar Sazanavets
+      comments: The book explains design patterns with real life examples (code samples in c# and javascript). It is a good book to use as a reference book.
+    - title: |
+        Atomic Habits by James Clear
+      comments: A great book to get 1 percent better every day.
+    - title: |
+        The Phoenix Project by Gene Kim, Kevin Behr, and George Spafford
+      comments: The book is written as a novel and focuses on how to improve company processes using DevOps.

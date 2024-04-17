@@ -5,6 +5,7 @@ title: Mentors
 
 <h1>Meet our community of mentors!</h1>
 
+
 {% include search_mentor.html %}
 
 <div class="mentors container">
@@ -15,7 +16,12 @@ title: Mentors
         Sorry, no mentors matching your search criteria were found. Please, adjust your filters and try again.
     </div>
 
+    {% assign days_open = site.registration | plus: 0 %}
+    {% assign current_day = site.time | date: "%d" | plus: 0 %}
+    {% assign current_month = site.time | date: "%-m" | plus: 0 %}
+
     {% assign mentors = site.data.mentors | sort: "sort" | reverse %}
+
     {% for mentor in mentors %}
         {% if mentor.disabled %}
             <div class="inactive-mentor" id="mentor-card-{{mentor.index}}"></div>
@@ -23,9 +29,9 @@ title: Mentors
             <div class="card" id="mentor-card-{{mentor.index}}">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="{{mentor.image}}" class="card-img" alt="...">     
+                        <img src="{{mentor.image}}" class="card-img" alt="...">
+                        {% include registration.html %}
                     </div>
-
                     <div class="col-md-9">
                         <div class="card-body">
                             <div class="card-header">
@@ -66,58 +72,20 @@ title: Mentors
                                     <p class="card-text"><label>Programming languages</label>: {{mentor.skills.languages}}</p>
                                 {% endif %}
 
-                                <p class="network">
-                                    {% for network in mentor.network %}
-                                        {% if network.linkedin %}
-                                            <a href="{{network.linkedin}}" target="_blank">
-                                                {% include icons/linkedin.svg %}
-                                            </a>
-                                        {% endif %}
-                                        {% if network.twitter %}
-                                            <a href="{{network.twitter}}" target="_blank">
-                                                {% include icons/twitter.svg %}
-                                            </a>
-                                        {% endif %}
-                                        {% if network.github %}
-                                            <a href="{{network.github}}" target="_blank">
-                                                {% include icons/github.svg %}
-                                            </a>
-                                        {% endif %}
-                                        {% if network.medium %}
-                                            <a href="{{network.medium}}" target="_blank">
-                                                {% include icons/medium.svg %}
-                                            </a>
-                                        {% endif %}
-                                        {% if network.website %}
-                                        <a href="{{network.website}}" target="_blank">
-                                            {% include icons/website.svg %}
-                                        </a>
-                                        {% endif %}
-                                        {% if network.instagram %}
-                                        <a href="{{network.instagram}}" target="_blank">
-                                            {% include icons/instagram.svg %}
-                                        </a>
-                                        {% endif %}
-                                        {% if network.telegram %}
-                                        <a href="{{network.telegram}}" target="_blank">
-                                            {% include icons/telegram.svg %}
-                                        </a>
-                                        {% endif %}
-                                        {% if network.youtube %}
-                                        <a href="{{network.youtube}}" target="_blank">
-                                            {% include icons/youtube.svg %}
-                                        </a>
-                                        {% endif %}
-                                    {% endfor %}
-                                </p>
+                                {% include networks_mentors.html %}
 
                             </div>
 
                             <div id="mentees-{{mentor.index}}" class="card-mentees d-none">
                                 <p class="card-text" data-toggle="tooltip" data-html="true" title="<b>Ad-Hoc:</b> request a session when necessary. <br><b>Long term relationship:</b> at least one mentoring program cycle.">
                                     <label>Type of mentoring</label>:
-                                    {% if mentor.type == 'both' %}
+                                    {% assign mentor_type_lower = mentor.type | downcase %}
+                                    {% if mentor_type_lower == 'both' %}
                                         Long term relationship and Ad-Hoc
+                                    {% elsif mentor_type_lower == 'long-term' %}
+                                        Long term relationship
+                                    {% elsif mentor_type_lower == 'ad-hoc' %}
+                                        Ad-Hoc
                                     {% else %}
                                         {{mentor.type}}
                                     {% endif %}
@@ -145,55 +113,18 @@ title: Mentors
                                 {% endif %}
                             </div>
 
-                            {% assign reviews = site.data.reviews | where:"index", mentor.index %}
-                            {% if reviews == empty %}
-                                <div id="reviews-{{mentor.index}}" class="card-reviews d-none">
-                                    <p class="card-text">This mentor hasn't received any reviews yet.</p>
-                                </div>
-                            {% endif %}
-                            {% for review in reviews %}
-                                <div id="reviews-{{mentor.index}}" class="card-reviews d-none">
-                                    {% assign feedbacks = review.feedback | sort: 'date' | reverse %}
-                                    {% for feedback in feedbacks %}
-                                        <div class="stars stars{{feedback.score}}"></div>
-                                        <p class="card-text">
-                                          <span>{{feedback.date-f}}</span> - {{feedback.type}}
-                                        </p>
-                                        <p class="card-text">{{feedback.feedback}}</p><small>by {{feedback.name}}</small>
-                                        <hr>
-                                    {% endfor %}
-                                </div>
-                            {% endfor %}
+                            {% include review_mentors.html %}
 
-                            {% assign books = site.data.books | where:"index", mentor.index %}
-                            {% if books == empty %}
-                                <div id="mentor-resources-{{mentor.index}}" class="card-resources d-none">
-                                    <p class="card-text">This mentor doesn't have resource recommendations yet.</p>
-                                </div>
-                            {% endif %}
-                            {% for book in books %}
-                                <div id="mentor-resources-{{mentor.index}}" class="card-resources d-none">
-                                    <h5>Book Recommendations</h5>
-                                    {% assign books = book.books %}
-                                    <div class="book-recommendations">
-                                        {% for book in books %}
-                                        <div class="book">
-                                            <h6>{{ book.title }}</h6>
-                                            <p>{{ book.comments }}</p>
-                                        </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            {% endfor %}
+                            {% include resources_mentors.html %}
                         </div>
                     </div>
                 </div>
                 <input type="hidden" name="index" value="{{mentor.index}}">
                 <input type="hidden" name="exp" value="{{mentor.skills.years}}">
+                <input type="hidden" name="mentor-type" value="{{mentor.type | downcase}}">
                 <input type="hidden" name="mentor-data"
                     value="{{mentor.name | downcase}}
                         {{mentor.bio | normalize_whitespace | downcase}}
-                        {{mentor.type | downcase}}
                         {{mentor.skills.languages | downcase}}
                         {{mentor.skills.extra | normalize_whitespace | downcase}}
                         {{mentor.skills.focus | array_to_sentence_string | downcase}}

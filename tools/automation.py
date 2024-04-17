@@ -61,9 +61,7 @@ def get_yaml_block_sequence(mentor_data, start_index, end_index):
     for entry in range(start_index, end_index+1):
         if not pd.isna(mentor_data.iloc[entry]):
             block_sequence_list.append(mentor_data.iloc[entry].rstrip())
-        return block_sequence_list
-
-    return ""
+    return block_sequence_list
 
 
 def extract_numbers_from_string(text_arg, get_max_value=True):

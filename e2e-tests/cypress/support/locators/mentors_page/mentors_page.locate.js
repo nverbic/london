@@ -21,7 +21,11 @@ const MENTEES_CARD = '.card-mentees > .card-text';
 
 const TOGGLE_ADVANCED_FILTERS = '#toggle-filters';
 const CLEAR_ALL_FILTERS = '#clear-btn';
-const NO_MENTORS_FOUND = '#no-mentors-msg'
+const NO_MENTORS_FOUND = '#no-mentors-msg';
+
+const MENTOR_TYPE_BOTH = 'both';
+const MENTOR_TYPE_LONG_TERM = 'long-term';
+const MENTOR_TYPE_ADHOC = 'ad-hoc';
 
 
 class mentorsLocatorManager {
@@ -242,8 +246,12 @@ class mentorsLocatorManager {
   validateMentoringTypes = (option, mentoringTypes) => {
     cy.wrap(option).find(MENTEES_TAB).click();
     let mentoringTypeDisplayed =
-      mentoringTypes === 'both'
+      mentoringTypes === MENTOR_TYPE_BOTH
         ? 'Long term relationship and Ad-Hoc'
+        : mentoringTypes === MENTOR_TYPE_LONG_TERM
+        ? 'Long term relationship'
+        : mentoringTypes === MENTOR_TYPE_ADHOC
+        ? 'Ad-Hoc'
         : mentoringTypes;
 
     cy.wrap(option)
