@@ -68,17 +68,19 @@ def extract_numbers_from_string(text_arg, get_max_value=True):
     """
     Extract numbers and convert them to integers.
     """
-    if isinstance(text_arg, (int, float)):
-        return text_arg
-
-    if isinstance(text_arg, str):
-        digits = [int(num) for num in re.findall(r"\d+", text_arg)]
-        if digits:
-            if get_max_value:
-                return max(digits)
-            return digits
-
-    return ""
+    # TODO: If the field hours in xlsx is NAN, what should be the default: 0 or 1
+    if not pd.isna(text_arg):
+        if isinstance(text_arg, str):
+            digits = [int(num) for num in re.findall(r"\d+", text_arg)]
+            if digits:
+                if get_max_value:
+                    return max(digits)
+                return digits
+            else:
+                return 0
+        else:
+            return int(text_arg)
+    return 0
 
 
 def get_multiline_string(long_text_arg):
@@ -163,7 +165,9 @@ def xlsx_to_yaml_parser(mentor_row, mentor_index):
     hours_per_month = extract_numbers_from_string(mentor_row.iloc[28])
     max_experience = extract_numbers_from_string(mentor_row.iloc[8])
 
-    mentor_disabled = True
+    # TODO: After testing phase change to mentor_disabled to True
+    # TODO: If the complete yml is generated, these fields should be read from the old yml
+    mentor_disabled = False
     mentor_matched = False
     mentor_sort = 10
 
@@ -185,6 +189,7 @@ def xlsx_to_yaml_parser(mentor_row, mentor_index):
             'bio': bio_str,
             'image': mentor_image,
             'languages': mentor_row.iloc[5],
+            'availability': [],
             'skills':{
                 'experience': mentor_row.iloc[8],
                 'years': max_experience,
