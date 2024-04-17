@@ -111,94 +111,166 @@ def get_mentorship_type(mentorship_type_str):
     return ""
 
 
-def write_mentors_yml_file(mentors_data):
+def write_yml_file(file_path, mentors_data, mode):
     """
-    Create mentors.yml file
+    Create new or append to mentors.yml file
     :mentors_data: list of dictionaries
+    :mode: 'w' or 'a'
     """
-    file_output = ".\\tools\\mentors.yml"
-
-    with open(file_output, 'w', encoding = "utf-8") as output_fp:
+    with open(file_path, mode, encoding = "utf-8") as output_yml:
         yaml = YAML()
+
         # TODO: check if flow styles def needed
         yaml.default_flow_style = False
-        # Indenting rules in yaml file
-        yaml.indent(mapping=2, sequence=4, offset=2)
-        yaml.dump(mentors_data, output_fp)
-    print(f"File: {file_output} is successfully written.")
+
+        if mode == 'w':
+            yaml.indent(mapping=2, sequence=4, offset=2)
+
+        yaml.dump(mentors_data, output_yml)
+    print(f"File: {file_path} is successfully written.")
 
 
-def xlsx_to_yaml_parser(xlsx_file):
+def read_yml_file(file_path):
     """
-    Prepare mentor's excel file data for yaml format
+    Read yml file
     """
+    with open(file_path, 'r', encoding="utf-8") as input_yml:
+        yaml=YAML(typ='safe')
+        yml_dict = yaml.load(input_yml)
+        print(f"File: {file_path} is successfully read.")
+    return yml_dict
+
+
+def xlsx_to_yaml_parser(mentor_row, mentor_index):
+    """
+    Prepare mentor's excel data for yaml format
+    """
+
+    mentee_str = get_multiline_string(mentor_row.iloc[24])
+    bio_str = get_multiline_string(mentor_row.iloc[25])
+    extra_str = get_multiline_string(mentor_row.iloc[26])
+
+    areas = get_yaml_block_sequence(mentor_row,
+                                    AREAS_START_INDEX,
+                                    AREAS_END_INDEX)
+    focus = get_yaml_block_sequence(mentor_row,
+                                    FOCUS_START_INDEX,
+                                    FOCUS_END_INDEX)
+    programming_languages = get_yaml_block_sequence(mentor_row,
+                                                    PROG_LANG_START_INDEX,
+                                                    PROG_LANG_END_INDEX)
+
+    type_of_mentorship = get_mentorship_type(mentor_row.iloc[2])
+    network_list = get_social_media_links(mentor_row.iloc[27])
+    hours_per_month = extract_numbers_from_string(mentor_row.iloc[28])
+    max_experience = extract_numbers_from_string(mentor_row.iloc[8])
+
+    mentor_disabled = True
+    mentor_matched = False
+    mentor_sort = 10
+
+    # Left commented since the code might be used in the later version (if decided to
+    # add default picture until the mentor's image is not available)
+    # mentor_image = os.path.join(IMAGE_FILE_PATH, str(mentor_index) + IMAGE_SUFFIX)
+
+    mentor_image =  f"Download image from: {mentor_row.iloc[33]}"
+
+    mentor = {'name': mentor_row.iloc[0],
+            'disabled': mentor_disabled,
+            'matched': mentor_matched,
+            'sort': mentor_sort,
+            'hours': hours_per_month,
+            'type': type_of_mentorship,
+            'index': mentor_index,
+            'location': mentor_row.iloc[4],
+            'position': f"{mentor_row.iloc[6]}, {mentor_row.iloc[7]}",
+            'bio': bio_str,
+            'image': mentor_image,
+            'languages': mentor_row.iloc[5],
+            'skills':{
+                'experience': mentor_row.iloc[8],
+                'years': max_experience,
+                'mentee': mentee_str,
+                'areas': areas,
+                'languages': ', '.join(programming_languages),
+                'focus': focus,
+                'extra': extra_str,
+                },
+            'network': network_list,
+            }
+    return mentor
+
+
+def get_all_mentors_data_in_yml_format(xlsx_file_path):
+    """
+    Read all mentors from Excel sheet.
+    Prepare data for writting to yaml file.
+    """
+    # list of dict
     mentors = []
 
-    df_excel = pd.read_excel(xlsx_file, sheet_name="Mentors")
+    df_mentors = pd.read_excel(xlsx_file_path, sheet_name="Mentors")
 
-    for i in range(0, len(df_excel)):
-        mentor_row = df_excel.iloc[i]
-
-        mentee_str = get_multiline_string(mentor_row.iloc[24])
-        bio_str = get_multiline_string(mentor_row.iloc[25])
-        extra_str = get_multiline_string(mentor_row.iloc[26])
-
-        areas = get_yaml_block_sequence(mentor_row,
-                                        AREAS_START_INDEX,
-                                        AREAS_END_INDEX)
-        focus = get_yaml_block_sequence(mentor_row,
-                                        FOCUS_START_INDEX,
-                                        FOCUS_END_INDEX)
-        programming_languages = get_yaml_block_sequence(mentor_row,
-                                                        PROG_LANG_START_INDEX,
-                                                        PROG_LANG_END_INDEX)
-
-        type_of_mentorship = get_mentorship_type(mentor_row.iloc[2])
-        network_list = get_social_media_links(mentor_row.iloc[27])
-        hours_per_month = extract_numbers_from_string(mentor_row.iloc[28])
-        max_experience = extract_numbers_from_string(mentor_row.iloc[8])
-
-        mentor_disabled = False
-        mentor_matched = False
-        mentor_sort = 10
-
-        # TODO: Implement dictionary with email: index pairs,
-        # in order to preserve existing indexing
-        mentor_index = i+1
-
-        # Left commented since the code might be used in the later version (if decided to 
-        # add default picture until the mentor's image is not available)
-        # mentor_image = os.path.join(IMAGE_FILE_PATH, str(mentor_index) + IMAGE_SUFFIX)
-        mentor_image =  f"Download image from: {mentor_row.iloc[33]}"
-
-        mentor = {'name': mentor_row.iloc[0],
-                'disabled': mentor_disabled,
-                'matched': mentor_matched,
-                'sort': mentor_sort,
-                'hours': hours_per_month,
-                'type': type_of_mentorship,
-                'index': mentor_index,
-                'location': mentor_row.iloc[4],
-                'position': f"{mentor_row.iloc[6]}, {mentor_row.iloc[7]}",
-                'bio': bio_str,
-                'image': mentor_image,
-                'languages': mentor_row.iloc[5],
-                'skills':{
-                    'experience': mentor_row.iloc[8],
-                    'years': max_experience,
-                    'mentee': mentee_str,
-                    'areas': areas,
-                    'languages': ', '.join(programming_languages),
-                    'focus': focus,
-                    'extra': extra_str,
-                    },
-                'network': network_list,
-                }
+    for row in range(0, len(df_mentors)):
+        mentor =  xlsx_to_yaml_parser(df_mentors.iloc[row], row+1)
         mentors.append(mentor)
     return mentors
 
+
+def get_new_mentors_data_in_yml_format(yml_file_path, xlsx_file_path):
+    """
+    Read just new mentors from Excel sheet
+     - start reading xlsx Mentors from the row 88 (from the date 03/04/2024)
+     - find diff. between existing yml and xlsx
+    Prepare data for writting to yaml file.
+    """
+    # list of dict
+    mentors = []
+
+    # Get mentors' names and indexes from yml file
+    mentors_yml_dict = read_yml_file(yml_file_path)
+    mentors_names_yml = [sub['name'].lower() for sub in mentors_yml_dict]
+    mentors_indexes = [sub['index'] for sub in mentors_yml_dict]
+
+    # Highest index is used as the reference point from which
+    # new indexes are calculated
+    new_index = max(mentors_indexes) + 1
+
+    df_mentors = pd.read_excel(xlsx_file_path, sheet_name="Mentors", skiprows=86)
+
+    # Get mentors' names from xlsx file
+    mentors_names_xlsx = {}
+    for i in range(0, len(df_mentors)):
+        mentors_names_xlsx[i] = df_mentors.iloc[i].values[0].lower()
+
+    for row, name in mentors_names_xlsx.items():
+        if name not in mentors_names_yml:
+            mentor = xlsx_to_yaml_parser(df_mentors.iloc[row], new_index)
+            new_index += 1
+            mentors.append(mentor)
+    return mentors
+
+
 if __name__ == "__main__":
-    print(os.getcwd())
+    # TODO: Allow cmd line execution of the script:
+    #  line parameters:
+    #    path to mentors.xlsx
+    #    path to mentors.yml
+    #    choices: append or create new
+
+    # While in development work with temp. yml and xlsx files
+    # TODO: Change paths when feature complete
     FILE_PATH = ".\\tools\\mentors.xlsx"
-    list_of_mentors = xlsx_to_yaml_parser(FILE_PATH)
-    write_mentors_yml_file(list_of_mentors)
+    YML_FILE_PATH = ".\\tools\\mentors.yml"
+
+    # APPEND TO EXISTING YML
+    list_of_mentors = get_new_mentors_data_in_yml_format(YML_FILE_PATH, FILE_PATH)
+
+    if list_of_mentors:
+        write_yml_file(YML_FILE_PATH, list_of_mentors, 'a')
+
+    # CREATE NEW YML
+    # TODO: When creating new file, indexes of the mentors
+    # in the current yml file must be used in the new yml file.
+    # list_of_mentors = get_all_mentors_data_in_yml_format(FILE_PATH)
+    # write_yml_file(YML_FILE_PATH, list_of_mentors, 'w')
