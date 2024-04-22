@@ -5,6 +5,7 @@
 import os
 import textwrap
 import re
+from enum import Enum
 import pandas as pd
 from ruamel.yaml import YAML
 from ruamel.yaml.scalarstring import LiteralScalarString
@@ -28,6 +29,9 @@ TYPE_BOTH = "both"
 IMAGE_FILE_PATH = "assets/images/mentors/"
 IMAGE_SUFFIX = ".jpeg"
 
+class WriteMode(Enum):
+    WRITE = "w"
+    APPEND = "a"
 
 def get_social_media_links(social_media_links_str):
     """
@@ -67,20 +71,20 @@ def get_yaml_block_sequence(mentor_data, start_index, end_index):
 def extract_numbers_from_string(text_arg, get_max_value=True):
     """
     Extract numbers and convert them to integers.
+    Note: if only one number is in the xlsx cell, then it is read as int or float, not text
     """
     # TODO: If the field hours in xlsx is NAN, what should be the default: 0 or 1
-    if not pd.isna(text_arg):
-        if isinstance(text_arg, str):
-            digits = [int(num) for num in re.findall(r"\d+", text_arg)]
-            if digits:
-                if get_max_value:
-                    return max(digits)
-                return digits
-            else:
-                return 0
-        else:
-            return int(text_arg)
-    return 0
+    if pd.isna(text_arg):
+        text_arg = 0
+
+    if isinstance(text_arg, str):
+        digits = [int(num) for num in re.findall(r"\d+", text_arg)]
+        if digits:
+            if get_max_value:
+                return max(digits)
+            return digits
+
+    return int(text_arg)
 
 
 def get_multiline_string(long_text_arg):
@@ -115,7 +119,7 @@ def write_yml_file(file_path, mentors_data, mode):
     """
     Create new or append to mentors.yml file
     :mentors_data: list of dictionaries
-    :mode: 'w' or 'a'
+    :mode: write or append
     """
     with open(file_path, mode, encoding = "utf-8") as output_yml:
         yaml = YAML()
@@ -270,10 +274,10 @@ if __name__ == "__main__":
     list_of_mentors = get_new_mentors_data_in_yml_format(YML_FILE_PATH, FILE_PATH)
 
     if list_of_mentors:
-        write_yml_file(YML_FILE_PATH, list_of_mentors, 'a')
+        write_yml_file(YML_FILE_PATH, list_of_mentors, WriteMode.APPEND.value)
 
     # CREATE NEW YML
     # TODO: When creating new file, indexes of the mentors
     # in the current yml file must be used in the new yml file.
     # list_of_mentors = get_all_mentors_data_in_yml_format(FILE_PATH)
-    # write_yml_file(YML_FILE_PATH, list_of_mentors, 'w')
+    # write_yml_file(YML_FILE_PATH, list_of_mentors, WriteMode.WRITE.value)
