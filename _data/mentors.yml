@@ -39,7 +39,7 @@
   image: assets/images/mentors/2.jpeg
   location: Cambridge, UK
   languages: English
-  availability: [ 5 , 6 ]
+  availability: [5, 6]
   skills:
     experience: 16+ years
     years: 16
@@ -74,7 +74,7 @@
   type: both
   index: 3
   languages: Portuguese, English
-  availability: [ 7, 8, 9 ]
+  availability: [7, 8, 9]
   skills:
     experience: 10-15 years
     years: 15
@@ -875,7 +875,7 @@
 - name: Monal Sanghvi
   disabled: false
   matched: true
-  sort: 10
+  sort: 200
   hours: 2
   type: both
   index: 29
@@ -884,7 +884,7 @@
   image: assets/images/mentors/29.png
   location: London, UK
   languages: English
-  availability: []
+  availability: [5, 6]
   skills:
     experience: 10-15 years
     years: 15
@@ -1100,14 +1100,14 @@
   disabled: false
   hours: 2
   position: Principal software engineer, Apple
-  sort: 10
+  sort: 200
   type: long-term
   index: 37
   location: United Kingdom, London
   bio: 18 years of experience in developing highly scalable distributed systems, majorly in data storage systems and fintech domains. Experience driving projects and leading teams
   image: assets/images/mentors/37.svg
   languages: English
-  availability: []
+  availability: [5, 6]
   skills:
     experience: 16+ Years
     years: 16
@@ -1830,7 +1830,7 @@
 
 - name: Hersi Kopani
   disabled: false
-  sort: 100
+  sort: 200
   hours: 5
   position: Senior Software Engineer, Walgreens Boots Alliance
   type: both
@@ -1844,7 +1844,7 @@
     Overall, I bring a unique blend of technical expertise, leadership acumen, and a commitment to diversity and personal enrichment to every project and endeavor I undertake.
   image: assets/images/mentors/60.png
   languages: English, Spanish
-  availability: []
+  availability: [5, 6]
   skills:
     experience: 5-7 Years
     years: 7
@@ -1981,7 +1981,7 @@
     I work mainly with Backend and AWS. I am keen to help people start their journey in Software Engineering and Cloud Computing. I can share some knowledge from the industry, help you review your CV to apply for a job, and anything else around that. If you're looking to get AWS certified, I could also help you come up with a study plan, and share tips and study materials. I currently hold two certifications: Cloud Practitioner & Solutions Architect - Associate.
   image: assets/images/mentors/64.jpg
   languages: English, Portuguese, French
-  availability: [ 5 , 6 ]
+  availability: [5, 6]
   skills:
     experience: 4-5 Years
     years: 5
@@ -2333,7 +2333,7 @@
   disabled: false
   hours: 4
   position: Senior software engineer, T Rowe price
-  sort: 10
+  sort: 200
   type: ad-hoc
   index: 75
   location: London
@@ -2341,7 +2341,7 @@
     I am a senior software engineer I've worked for many years in the industry. I worked mainly in financial services but with different employers and different projects. I am always keen to help women start and progress their career in technology.
   image: assets/images/mentors/75.jpg
   languages: English, Italian, French
-  availability: []
+  availability: [5, 6]
   skills:
     experience: 7-10 Years
     years: 10
@@ -2407,7 +2407,7 @@
     With over 15 years of experience as a developer, I am a graduate of the Oxford Blockchain Strategy Programme and an AWS Solutions Architect. My career has spanned various roles, including full-stack, backend, frontend, blockchain developer, and platform engineer, collaborating with startups and enterprises alike, such as HSBC, Deloitte, Credit Suisse, GSK, and Eurostar. My technical expertise encompasses Java (including Spring and Spring Boot), JavaScript (Node.js, React.js, TypeScript), and both relational and non-relational databases (Oracle, MySQL, PostgreSQL, MongoDB, DynamoDB, Neo4j, among others).
   image: assets/images/mentors/77.jpg
   languages: English
-  availability: [ 5 , 6 ]
+  availability: [5, 6]
   skills:
     experience: 16 Years
     years: 16
@@ -2709,7 +2709,7 @@
 
 - name: Adegbenga Agoro
   disabled: false
-  sort: 10
+  sort: 200
   hours: 4
   position: CTO, ZeroComplex AI
   type: both
@@ -2719,7 +2719,7 @@
     I am an experienced Software Engineering professional with more than 20 years of expertise in developing software systems across a broad spectrum, ranging from small-scale applications to extensive enterprise infrastructure platforms. My passion lies in teaching software engineering through a humanistic lens, emphasizing user experience while firmly adhering to the fundamental principles of core software engineering.
   image: assets/images/mentors/87.jpg
   languages: English
-  availability: []
+  availability: [5, 6]
   skills:
     experience: 16+ Years
     years: 16
